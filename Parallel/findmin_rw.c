@@ -24,6 +24,35 @@ static double mysecond()
  pthread_mutex_t read_write_lock;
  int minimum_value, partial_list_size;
 
+ void *find_min(void *list_ptr)
+{
+        /* vars */
+        int *partial_list_pointer = NULL;
+        int my_min = 0;
+        long i = 0;
+        /* ---- */
+
+        partial_list_pointer = (int *)(list_ptr);
+
+        my_min = partial_list_pointer[0];
+        for (i = 0; i < partial_list_size; i++) {
+                if (partial_list_pointer[i] < my_min) {
+                        my_min = partial_list_pointer[i];
+                }
+        }
+
+        /* lock and update the global copy */
+        pthread_mutex_lock(&minimum_value_lock);
+
+        if (my_min < minimum_value) {
+                minimum_value = my_min;
+        }
+        pthread_mutex_unlock(&minimum_value_lock);
+
+
+        pthread_exit(0);
+}
+
  typedef struct {
  int readers;
  int writer;
