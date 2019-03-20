@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1553104192 source:c:\users\icoop\desktop\lab5\parallel\main.c
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+
+1553103008 source:c:\users\icoop\desktop\lab5\parallel\integersearch.c
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	<unistd.h>
+	<sys/time.h>
+	<limits.h>
+	<pthread.h>
+
+1553107866 source:c:\users\icoop\desktop\lab5\parallel\7,7.c
+	<stdio.h>
+	<stdlib.h>
+	<stdint.h>
+	<unistd.h>
+	<sys/time.h>
+	<limits.h>
+	<pthread.h>
+	<pthread.h>
+
