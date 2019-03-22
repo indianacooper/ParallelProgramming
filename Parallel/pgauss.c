@@ -1,7 +1,7 @@
-/* This file is only for reference. It cannot be compiled successfully, 
- * because m_set_procs(), m_get_numprocs() is not supported. Please 
- * write your own parallel version (Pthread, OpenMP, or MPI verion). For 
- * instance, you should use pthread_create() and pthread_join() to 
+/* This file is only for reference. It cannot be compiled successfully,
+ * because m_set_procs(), m_get_numprocs() is not supported. Please
+ * write your own parallel version (Pthread, OpenMP, or MPI verion). For
+ * instance, you should use pthread_create() and pthread_join() to
  * write a Pthread version, and use MPI initilization and communication
  * functions to write a MPI version.
  */
@@ -63,7 +63,7 @@ void parameters(int argc, char **argv) {
       /* Use submission parameters */
       submit = 1;
       N = 4;
-      procs = 2;
+      nt = 2;
       printf("\nSubmission run for \"%s\".\n", ctermid(uid));
       srand(randm());
     }
@@ -90,7 +90,7 @@ void parameters(int argc, char **argv) {
     }
     nt = atoi(argv[2]);
     if (nt < 1) {
-      printf("Warning: Invalid number of processors = %i.  Using 1.\n", procs);
+      printf("Warning: Invalid number of processors = %i.  Using 1.\n", nt);
       nt = 1;
     }
 
@@ -205,16 +205,15 @@ void main(int argc, char **argv) {
 }
 
 void gauss() {
-  
+  int norm, row, col, i;
   pthread_t tid[nt];
-
   /* Gaussian elimination */
   // Create specified num of threads
   for(i = 0; i < nt; i++){
     pthread_create(&tid[i], NULL, &pgauss, NULL);
   }
   // Join threads to wait
-  for(i = 0; i < procs; i++){
+  for(i = 0; i < nt; i++){
     pthread_join(tid[i], NULL);
   }
   /* Back substitution */
@@ -248,3 +247,8 @@ void *pgauss(){
   }
 
 }
+
+
+
+
+
