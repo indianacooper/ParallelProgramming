@@ -62,8 +62,8 @@ void parameters(int argc, char **argv) {
     if ( argc == 2 && !strcmp(argv[1], "submit") ) {
       /* Use submission parameters */
       submit = 1;
-      N = 4;
-      nt = 2;
+      N = 32;
+      nt = 1;
       printf("\nSubmission run for \"%s\".\n", ctermid(uid));
       srand(randm());
     }
